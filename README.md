@@ -20,7 +20,7 @@ Bem-vindo ao **Abode**, o aplicativo definitivo para organizar a sua casa! 🎉
 
 ## Contribua 🤝
 
-Quer contribuir? Estamos abertos a contribuições! Veja nosso [guia de contribuição](link) e faça parte da família Abode!
+Quer contribuir? Estamos abertos a contribuições! Veja nosso [guia de contribuição]([link](https://api.whatsapp.com/send?phone=5547997125592&text=Ola,%20vim%20pelo%20Abode)) e faça parte da família Abode!
 
 ## Contato 📧
 
