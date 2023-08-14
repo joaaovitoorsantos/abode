@@ -24,16 +24,10 @@ Quer contribuir? Estamos abertos a contribuições! Veja nosso [guia de contribu
 
 ## Contato 📧
 
-Tem alguma dúvida, sugestão ou feedback? Fale conosco: [contato@abode.com](mailto:contato@abode.com)
-
-## Licença 📄
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para mais detalhes.
+Tem alguma dúvida, sugestão ou feedback? Fale conosco: [joaaovitoorsantos@gmail.com](mailto:joaaovitoorsantos@gmail.com)
 
 ---
 
-Feito com ❤️ por [Seu Nome] e equipe.
-
-Siga-nos nas redes sociais: [Twitter](link), [Facebook](link), [Instagram](link).
+Feito com ❤️ por João Vitor.
 
 🏠 **Abode**: Organize sua casa, organize sua vida!
