@@ -1,16 +1,26 @@
 import {
+  AppProvider,
+  FormLayout,
   Frame,
   Layout,
   LegacyCard,
+  Loading,
+  Modal,
   Navigation,
   Page,
   SkeletonBodyText,
   SkeletonDisplayText,
   SkeletonPage,
   TextContainer,
+  TextField,
   TopBar,
 } from '@shopify/polaris'
-import { ArrowLeftMinor, HomeMajor, OrdersMajor } from '@shopify/polaris-icons'
+import {
+  ArrowLeftMinor,
+  ConversationMinor,
+  HomeMajor,
+  OrdersMajor,
+} from '@shopify/polaris-icons'
 import { useCallback, useRef, useState } from 'react'
 
 export default function Topbar() {
@@ -19,6 +29,7 @@ export default function Topbar() {
   const [isLoading, setIsLoading] = useState(false)
   const [userMenuActive, setUserMenuActive] = useState(false)
   const [mobileNavigationActive, setMobileNavigationActive] = useState(false)
+  const [modalActive, setModalActive] = useState(false)
 
   const toggleUserMenuActive = useCallback(
     () => setUserMenuActive((userMenuActive) => !userMenuActive),
@@ -35,6 +46,10 @@ export default function Topbar() {
     () => setIsLoading((isLoading) => !isLoading),
     [],
   )
+  const toggleModalActive = useCallback(
+    () => setModalActive((modalActive) => !modalActive),
+    [],
+  )
 
   const userMenuActions = [
     {
@@ -45,9 +60,9 @@ export default function Topbar() {
   const userMenuMarkup = (
     <TopBar.UserMenu
       actions={userMenuActions}
-      name="João Vitor"
-      detail={'Morador'}
-      initials="J"
+      name="Dharma"
+      detail={'teste'}
+      initials="D"
       open={userMenuActive}
       onToggle={toggleUserMenuActive}
     />
@@ -66,41 +81,56 @@ export default function Topbar() {
       <Navigation.Section
         items={[
           {
-            label: 'Sair',
+            label: 'Back to Shopify',
             icon: ArrowLeftMinor,
           },
         ]}
       />
       <Navigation.Section
         separator
-        title="Organizações"
+        title="Jaded Pixel App"
         items={[
           {
-            label: 'Home',
+            label: 'Dashboard',
             icon: HomeMajor,
             onClick: toggleIsLoading,
           },
           {
-            label: 'Limpeza',
-            icon: OrdersMajor,
-            onClick: toggleIsLoading,
-          },
-          {
-            label: 'Compras',
-            icon: OrdersMajor,
-            onClick: toggleIsLoading,
-          },
-          {
-            label: 'Finanças',
+            label: 'Jaded Pixel Orders',
             icon: OrdersMajor,
             onClick: toggleIsLoading,
           },
         ]}
+        action={{
+          icon: ConversationMinor,
+          accessibilityLabel: 'Contact support',
+          onClick: toggleModalActive,
+        }}
       />
     </Navigation>
   )
 
-  const actualPageMarkup = <Page title="Abode">Abode</Page>
+  const loadingMarkup = isLoading ? <Loading /> : null
+
+  const skipToContentTarget = (
+    <a id="SkipToContentTarget" ref={skipToContentRef} tabIndex={-1} />
+  )
+
+  const actualPageMarkup = (
+    <Page title="Account">
+      <Layout>
+        {skipToContentTarget}
+        <Layout.AnnotatedSection
+          title="Account details"
+          description="Jaded Pixel will use this as your account information."
+        >
+          <LegacyCard sectioned>
+            <FormLayout></FormLayout>
+          </LegacyCard>
+        </Layout.AnnotatedSection>
+      </Layout>
+    </Page>
+  )
 
   const loadingPageMarkup = (
     <SkeletonPage>
@@ -120,8 +150,9 @@ export default function Topbar() {
   const pageMarkup = isLoading ? loadingPageMarkup : actualPageMarkup
 
   const logo = {
-    width: 50,
-    topBarSource: 'https://i.imgur.com/seVohFD.png',
+    width: 124,
+    topBarSource:
+      'https://cdn.shopify.com/s/files/1/0446/6937/files/jaded-pixel-logo-color.svg?6215648040070010999',
     url: '#',
     accessibilityLabel: 'Abode',
   }
