@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
-import '@/styles/globals.css'
+import '@styles/globals.css'
 import '@shopify/polaris/build/esm/styles.css'
 import type { AppProps } from 'next/app'
 import enTranslations from '@shopify/polaris/locales/en.json'

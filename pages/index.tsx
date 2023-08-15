@@ -10,15 +10,46 @@ import {
   TextContainer,
   TopBar,
 } from '@shopify/polaris'
-import { ArrowLeftMinor, HomeMajor, OrdersMajor } from '@shopify/polaris-icons'
-import { useCallback, useRef, useState } from 'react'
+import {
+  ArrowLeftMinor,
+  HomeMajor,
+  OrdersMajor,
+  DeleteMajor,
+} from '@shopify/polaris-icons'
+import { useCallback, useRef, useState, useEffect } from 'react'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import Limpezas from './limpezas'
 
 export default function Topbar() {
+  const router = useRouter()
   const skipToContentRef = useRef<HTMLAnchorElement>(null)
-
+  const [currentPage, setCurrentPage] = useState('home')
   const [isLoading, setIsLoading] = useState(false)
   const [userMenuActive, setUserMenuActive] = useState(false)
   const [mobileNavigationActive, setMobileNavigationActive] = useState(false)
+  const [userNome, setUserNome] = useState('Guest')
+
+  useEffect(() => {
+    // Obter o userId do localStorage
+    const userId = localStorage.getItem('userId')
+
+    // Se o userId estiver presente, faça uma consulta à sua tabela de moradores
+    if (userId) {
+      // Aqui você pode fazer uma chamada API para buscar o nome do usuário
+      // usando a ID armazenada no localStorage
+      // Este é um exemplo, ajuste a URL e os detalhes da solicitação para o seu backend
+      axios
+        .get(`/api/moradores/${userId}`)
+        .then((response) => {
+          const nome = response.data.nome
+          setUserNome(nome) // Atualizar o estado com o nome do usuário
+        })
+        .catch((error) => {
+          console.error('Erro ao buscar o nome do usuário:', error)
+        })
+    }
+  }, [])
 
   const toggleUserMenuActive = useCallback(
     () => setUserMenuActive((userMenuActive) => !userMenuActive),
@@ -45,9 +76,9 @@ export default function Topbar() {
   const userMenuMarkup = (
     <TopBar.UserMenu
       actions={userMenuActions}
-      name="João Vitor"
+      name={userNome}
       detail={'Morador'}
-      initials="J"
+      initials={userNome.charAt(0)}
       open={userMenuActive}
       onToggle={toggleUserMenuActive}
     />
@@ -78,12 +109,12 @@ export default function Topbar() {
           {
             label: 'Home',
             icon: HomeMajor,
-            onClick: toggleIsLoading,
+            onClick: () => setCurrentPage('home'),
           },
           {
             label: 'Limpeza',
-            icon: OrdersMajor,
-            onClick: toggleIsLoading,
+            icon: DeleteMajor,
+            onClick: () => setCurrentPage('limpeza'),
           },
           {
             label: 'Compras',
@@ -100,7 +131,21 @@ export default function Topbar() {
     </Navigation>
   )
 
-  const actualPageMarkup = <Page title="Abode">Abode</Page>
+  const actualPageMarkup = (() => {
+    switch (currentPage) {
+      case 'home':
+        return <Page title="Home">Conteúdo da página inicial</Page>
+      case 'limpeza':
+        return (
+          <Page title="Limpeza">
+            <Limpezas />
+          </Page>
+        )
+      // Adicione mais cases conforme necessário
+      default:
+        return <Page title="Abode">Abode</Page>
+    }
+  })()
 
   const loadingPageMarkup = (
     <SkeletonPage>
