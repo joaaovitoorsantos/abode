@@ -21,6 +21,49 @@ module.exports = {
   },
   plugins: ['jsx-a11y', '@typescript-eslint'],
   rules: {
+    'import/order': [
+      'error',
+      {
+        groups: [
+          ['builtin', 'external'],
+          ['internal'],
+          ['parent', 'sibling', 'index'],
+        ],
+        pathGroups: [
+          {
+            pattern: '{axios,react,next/**}',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@shopify/**',
+            group: 'external',
+            position: 'after',
+          },
+          {
+            pattern: '@components/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '@functions/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '@utils/**',
+            group: 'internal',
+            position: 'after',
+          },
+        ],
+        pathGroupsExcludedImportTypes: [],
+        'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+      },
+    ],
     'prettier/prettier': [
       'error',
       {

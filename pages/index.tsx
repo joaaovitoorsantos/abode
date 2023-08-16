@@ -1,3 +1,7 @@
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import { useCallback, useEffect, useRef, useState } from 'react'
+
 import {
   Frame,
   Layout,
@@ -12,13 +16,13 @@ import {
 } from '@shopify/polaris'
 import {
   ArrowLeftMinor,
-  DeleteMajor,
+  ChecklistMajor,
   HomeMajor,
-  OrdersMajor,
+  SettingsMinor,
+  CartMajor,
+  CashDollarMinor,
 } from '@shopify/polaris-icons'
-import axios from 'axios'
-import { useRouter } from 'next/router'
-import { useCallback, useEffect, useRef, useState } from 'react'
+
 import Limpezas from './limpezas'
 
 export default function Topbar() {
@@ -29,21 +33,18 @@ export default function Topbar() {
   const [userMenuActive, setUserMenuActive] = useState(false)
   const [mobileNavigationActive, setMobileNavigationActive] = useState(false)
   const [userNome, setUserNome] = useState('Guest')
+  const [avatar, setAvatar] = useState('')
 
   useEffect(() => {
-    // Obter o userId do localStorage
     const userId = localStorage.getItem('userId')
-
-    // Se o userId estiver presente, faça uma consulta à sua tabela de moradores
     if (userId) {
-      // Aqui você pode fazer uma chamada API para buscar o nome do usuário
-      // usando a ID armazenada no localStorage
-      // Este é um exemplo, ajuste a URL e os detalhes da solicitação para o seu backend
       axios
         .get(`/api/moradores/${userId}`)
         .then((response) => {
-          const nome = response.data.nome
-          setUserNome(nome) // Atualizar o estado com o nome do usuário
+          const { nome, avatar } = response.data
+
+          setUserNome(nome)
+          setAvatar(avatar)
         })
         .catch((error) => {
           console.error('Erro ao buscar o nome do usuário:', error)
@@ -69,7 +70,11 @@ export default function Topbar() {
 
   const userMenuActions = [
     {
-      items: [{ content: 'Meu perfil' }, { content: 'Configurações' }],
+      items: [
+        { content: 'Meu perfil' },
+        { content: 'Minhas tarefas' },
+        { content: 'Minhas Contribuições' },
+      ],
     },
   ]
 
@@ -81,6 +86,7 @@ export default function Topbar() {
       initials={userNome.charAt(0)}
       open={userMenuActive}
       onToggle={toggleUserMenuActive}
+      avatar={avatar && avatar}
     />
   )
 
@@ -105,7 +111,7 @@ export default function Topbar() {
       />
       <Navigation.Section
         separator
-        title="Organizações"
+        title="Abode | Gestão da Casa"
         items={[
           {
             label: 'Home',
@@ -113,18 +119,23 @@ export default function Topbar() {
             onClick: () => setCurrentPage('home'),
           },
           {
-            label: 'Limpeza',
-            icon: DeleteMajor,
+            label: 'Tarefas',
+            icon: ChecklistMajor,
             onClick: () => setCurrentPage('limpeza'),
           },
           {
             label: 'Compras',
-            icon: OrdersMajor,
+            icon: CartMajor,
             onClick: toggleIsLoading,
           },
           {
-            label: 'Finanças',
-            icon: OrdersMajor,
+            label: 'Economias',
+            icon: CashDollarMinor,
+            onClick: toggleIsLoading,
+          },
+          {
+            label: 'Configurações',
+            icon: SettingsMinor,
             onClick: toggleIsLoading,
           },
         ]}

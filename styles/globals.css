@@ -1,3 +1,15 @@
 body {
   margin: 0;
 }
+
+
+:root {
+  --p-color-bg-primary: #014693 !important;
+  --p-color-bg-primary-hover: #336bb5 !important;
+  --p-color-bg-primary-active: #013a7a !important;
+}
+
+a {
+  color: #014693;
+}
+

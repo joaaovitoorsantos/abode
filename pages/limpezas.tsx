@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+
 import {
   Button,
   DataTable,
@@ -9,8 +12,6 @@ import {
   TextField,
 } from '@shopify/polaris'
 import { DeleteMajor, EditMajor } from '@shopify/polaris-icons'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
 
 export default function Limpezas() {
   const [limpezas, setLimpezas] = useState([])

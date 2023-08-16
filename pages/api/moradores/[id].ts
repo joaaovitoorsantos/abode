@@ -18,7 +18,7 @@ export default async function handler(
 
   const connection = getConnection()
   connection.query(
-    'SELECT nome FROM moradores WHERE id = ?',
+    'SELECT nome, avatar FROM moradores WHERE id = ?',
     [id],
     (error, results) => {
       if (error) {

@@ -28,15 +28,11 @@ export default async function handler(
           if (err || !isMatch) {
             return res.status(401).json({ error: 'Credenciais inválidas.' })
           }
-
-          // Aqui, você pode adicionar a lógica para gerar um token de autenticação
-          // e enviá-lo ao cliente
-
           res.json({ user })
         })
       },
     )
   } else {
-    res.status(405).end() // Método não permitido
+    res.status(405).end()
   }
 }
