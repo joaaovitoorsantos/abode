@@ -135,7 +135,7 @@ export default function Topbar() {
   const actualPageMarkup = (() => {
     switch (currentPage) {
       case 'home':
-        return <Page title="Home">Conteúdo da página inicial</Page>
+        return <Page title="Home">Conteúdo da página inicial...</Page>
       case 'limpeza':
         return <Limpezas />
       // Adicione mais cases conforme necessário
