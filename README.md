@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Abode 🏠
 
 Bem-vindo ao **Abode**, o aplicativo definitivo para organizar a sua casa! 🎉
