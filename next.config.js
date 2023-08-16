@@ -3,9 +3,12 @@ const withPWA = require('next-pwa')
 
 module.exports = withPWA({
   pwa: {
-    dest: 'public', // destino dos arquivos de Service Worker
-    // outras configurações específicas do PWA podem ser adicionadas aqui
+    disable: process.env.NODE_ENV === 'development',
+    dest: 'public',
+    register: true,
+    skipWaiting: true,
+    // outras opções de configuração PWA aqui
   },
+  // outras configurações do Next.js aqui, como reactStrictMode, etc.
   reactStrictMode: true,
-  // outras configurações específicas do Next.js podem ser adicionadas aqui
 })
