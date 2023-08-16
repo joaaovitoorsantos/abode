@@ -1,18 +1,17 @@
+import { useCallback, useRef, useState } from 'react'
+
 import {
-  AppProvider,
   FormLayout,
   Frame,
   Layout,
   LegacyCard,
   Loading,
-  Modal,
   Navigation,
   Page,
   SkeletonBodyText,
   SkeletonDisplayText,
   SkeletonPage,
   TextContainer,
-  TextField,
   TopBar,
 } from '@shopify/polaris'
 import {
@@ -21,7 +20,6 @@ import {
   HomeMajor,
   OrdersMajor,
 } from '@shopify/polaris-icons'
-import { useCallback, useRef, useState } from 'react'
 
 export default function Topbar() {
   const skipToContentRef = useRef<HTMLAnchorElement>(null)
