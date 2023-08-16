@@ -2,6 +2,7 @@
     "name": "Abode",
     "short_name": "Abode",
     "description": "Seu aplicativo de gestão doméstica.",
+    "scope": "/",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#014693",
