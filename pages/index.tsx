@@ -23,6 +23,7 @@ import {
   CashDollarMinor,
 } from '@shopify/polaris-icons'
 
+import Home from './home'
 import Limpezas from './limpezas'
 
 export default function Topbar() {
@@ -146,7 +147,7 @@ export default function Topbar() {
   const actualPageMarkup = (() => {
     switch (currentPage) {
       case 'home':
-        return <Page title="Home">Conteúdo da página inicial...</Page>
+        return <Home />
       case 'limpeza':
         return <Limpezas />
       // Adicione mais cases conforme necessário
