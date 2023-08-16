@@ -11,7 +11,6 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const connection = getConnection()
-  const { id } = req.query // Obter o ID da URL
 
   switch (req.method) {
     case 'GET':
