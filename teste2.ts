@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
@@ -16,19 +15,22 @@ const connection = mysql.createConnection({
   },
 })
 
-async function getUserData() {
+async function createLimpezasTable() {
   try {
-    const [rows, fields] = await connection
-      .promise()
-      .query('SELECT * FROM User')
+    await connection.promise().query(`
+      CREATE TABLE IF NOT EXISTS limpezas (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        dia VARCHAR(255) NOT NULL,
+        tarefa VARCHAR(255) NOT NULL
+      )
+    `)
 
-    console.log('Registros da tabela User:')
-    console.log(rows)
+    console.log('Tabela "limpezas" criada com sucesso.')
 
     connection.end() // Fecha a conexão com o banco de dados
   } catch (error) {
-    console.error('Erro ao obter registros da tabela User:', error)
+    console.error('Erro ao criar a tabela "limpezas":', error)
   }
 }
 
-getUserData()
+createLimpezasTable()
