@@ -99,6 +99,7 @@ export default function Topbar() {
           {
             label: 'Sair',
             icon: ArrowLeftMinor,
+            onClick: () => router.push('/login'),
           },
         ]}
       />
