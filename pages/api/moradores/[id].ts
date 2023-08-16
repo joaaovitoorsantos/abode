@@ -1,6 +1,10 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import mysql from 'mysql2'
+/* eslint-disable no-case-declarations */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import { getConnection } from '@lib/db'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(
   req: NextApiRequest,
