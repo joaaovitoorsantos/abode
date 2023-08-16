@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const withPWA = require('next-pwa')
 
-const nextConfig = {
-  reactStrictMode: true,
+module.exports = withPWA({
   pwa: {
-    dest: 'public',
+    dest: 'public', // destino dos arquivos de Service Worker
+    // outras configurações específicas do PWA podem ser adicionadas aqui
   },
-}
-
-module.exports = withPWA(nextConfig)
+  reactStrictMode: true,
+  // outras configurações específicas do Next.js podem ser adicionadas aqui
+})
