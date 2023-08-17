@@ -1,13 +1,9 @@
-module.exports = {
-  reactStrictMode: true,
-}
+/* eslint-disable prefer-regex-literals */
+/* eslint-disable @typescript-eslint/no-var-requires */
+const withPWA = require('next-pwa')({
+  dest: 'public',
+})
 
-const withPWA = require('next-pwa')
 module.exports = withPWA({
-  pwa: {
-    dest: 'public',
-    register: true,
-    disable: process.env.NODE_ENV === 'development',
-    skipWaiting: true,
-  },
+  // next.js config
 })
